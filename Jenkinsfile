@@ -6,13 +6,13 @@ pipeline{
 
         stage('Build Jar'){
             steps{
-                sh 'mvn clean package -DskipTests'
+                ps1 'mvn clean package -DskipTests'
             }
         }
 
         stage('Build Image'){
             steps{
-                sh 'docker build -t=israautomationDevOps/selenium-aut-1 .'
+                ps1 'docker build -t=israautomationDevOps/selenium-aut-1 .'
             }
         }
 
@@ -24,16 +24,16 @@ pipeline{
             steps{
                 // There might be a warning.
                 //sh 'docker login -u ${DOCKER_HUB_USR} -p ${DOCKER_HUB_PSW}'
-                sh 'docker push israautomationDevOps/selenium-aut-1'
+                ps1 'docker push israautomationDevOps/selenium-aut-1'
             }
         }
 
     }
 
-    post {
-        always {
-            sh 'docker logout'
-        }
+  //  post {
+    //    always {
+      //      sh 'docker logout'
+      //  }
     }
 
 }
