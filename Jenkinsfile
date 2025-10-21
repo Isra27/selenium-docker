@@ -6,13 +6,13 @@ pipeline{
 
         stage('Build Jar'){
             steps{
-                sh 'mvn clean package -DskipTests'
+                bat 'mvn clean package -DskipTests'
             }
         }
 
         stage('Build Image'){
             steps{
-               sh 'docker build -t=israautomationDevOps/selenium-aut-1 .'
+               bat 'docker build -t=israautomationDevOps/selenium-aut-1 .'
             }
         }
 
