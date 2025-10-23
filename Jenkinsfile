@@ -1,42 +1,35 @@
-pipeline{
-
-    agent any
-
-    stages{
-
-        stage('Build Jar'){
-            steps{
+pipeline {
+    agent none
+    stages {
+        stage('Build Jar') {
+            agent {
+                docker {
+                    image 'maven:3.9.3-eclipse-temurin-17-focal'
+                    args '-u root -v /tmp/m2:/root/.m2'
+                }
+            }
+            steps {
                 bat 'mvn clean package -DskipTests'
             }
         }
-
-        stage('Build Image'){
-            steps{
-               bat 'docker build -t=israautomationdevops/selenium-aut-1 .'
+        stage('Build Image') {
+            steps {
+                script {
+                    app = docker.build('-t=israautomationdevops/selenium-aut-1 .')
+                }
             }
         }
 
         stage('Push Image'){
-            environment{
-                // assuming you have stored the credentials with this name
-                DOCKER_HUB = credentials('dockerhub-creds')
-            }
             steps{
-                // There might be a warning.
-                //bat 'docker login -u %DOCKER_HUB_USR% -p %DOCKER_HUB_PSW%'
-                bat 'echo %DOCKER_HUB_PSW% | docker login -u %DOCKER_HUB_USR% --password-stdin'
-                bat 'docker push israautomationdevops/selenium-aut-1'
-                //bat "docker tag israautomationdevops/selenium-aut-1:latest israautomationdevops/selenium-aut-1:${env.BUILD_NUMBER}"
-                //bat "docker push israautomationdevops/selenium-aut-1:${env.BUILD_NUMBER}"
+                script {
+                    // registry url is blank for dockerhub
+                    docker.withRegistry('', 'dockerhub-creds') {
+                        app.push("latest")
+                    }
+                }
             }
         }
+
     }
-
-    post {
-        always {
-            bat 'docker logout'
-        }
-    }
-
-
 }
