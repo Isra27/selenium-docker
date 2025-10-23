@@ -12,28 +12,30 @@ pipeline{
 
         stage('Build Image'){
             steps{
-               bat 'docker build -t=israautomationDevOps/selenium-aut-1 .'
+               bat 'docker build -t=israautomationDevOps/selenium-aut-1:latest .'
             }
         }
 
         stage('Push Image'){
-           // environment{
+            environment{
                 // assuming you have stored the credentials with this name
-               // DOCKER_HUB = credentials('dockerhub-creds')
-            //}
+                DOCKER_HUB = credentials('dockerhub-creds')
+            }
             steps{
                 // There might be a warning.
-                //sh 'docker login -u ${DOCKER_HUB_USR} -p ${DOCKER_HUB_PSW}'
-                bat 'docker push israautomationDevOps/selenium-aut-1'
-            }
+                //bat 'docker login -u %DOCKER_HUB_USR% -p %DOCKER_HUB_PSW%'
+                bat 'echo %DOCKER_HUB_PSW% | docker login -u %DOCKER_HUB_USR% --password-stdin'
+                bat 'docker push israautomationdevops/selenium-aut-1:latest'
+                bat "docker tag israautomationdevops/selenium-aut-1:latest israautomationdevops/selenium-aut-1:${env.BUILD_NUMBER}"
+                bat "docker push israautomationdevops/selenium-aut-1:${env.BUILD_NUMBER}"
         }
 
     }
 
-  //  post {
-    //    always {
-      //      sh 'docker logout'
-      //  }
-    //}
+    post {
+        always {
+            bat 'docker logout'
+        }
+    }
 
 }
