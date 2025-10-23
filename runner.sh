@@ -14,7 +14,7 @@ echo "THREAD_COUNT  : ${THREAD_COUNT:-1}"
 echo "TEST_SUITE    : ${TEST_SUITE}"
 echo "-------------------------------------------"
 # Do not start the tests immediately. Hub has to be ready with browser nodes
-echo "Checking if hub is ready..!"
+echo "Checking hub is ready..!"
 count=0
 while [ "$( curl -s http://${HUB_HOST:-hub}:4444/status | jq -r .value.ready )" != "true" ]
 do
