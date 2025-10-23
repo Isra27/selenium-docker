@@ -2,6 +2,7 @@ FROM bellsoft/liberica-openjdk-alpine:25-37
 
 # Install curl & jq
 RUN apk add curl jq
+RUN  RUN chmod +x 
 
 # workspace
 WORKDIR /home/selenium-docker
@@ -10,5 +11,7 @@ WORKDIR /home/selenium-docker
 ADD target/docker-resources     ./
 ADD runner.sh                   runner.sh
 
+RUN  RUN chmod +x runner.sh
+
 # Start the runner.sh
-ENTRYPOINT exec sh runner.sh
+ENTRYPOINT ["runner.sh"]
