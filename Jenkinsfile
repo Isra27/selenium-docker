@@ -12,7 +12,7 @@ pipeline{
 
         stage('Build Image'){
             steps{
-               bat 'docker build -t=israautomationdevops/selenium-aut-1:latest .'
+               bat 'docker build -t=israautomationdevops/selenium-aut-1 .'
             }
         }
 
@@ -25,9 +25,9 @@ pipeline{
                 // There might be a warning.
                 //bat 'docker login -u %DOCKER_HUB_USR% -p %DOCKER_HUB_PSW%'
                 bat 'echo %DOCKER_HUB_PSW% | docker login -u %DOCKER_HUB_USR% --password-stdin'
-                bat 'docker push israautomationdevops/selenium-aut-1:latest'
-                bat "docker tag israautomationdevops/selenium-aut-1:latest israautomationdevops/selenium-aut-1:${env.BUILD_NUMBER}"
-                bat "docker push israautomationdevops/selenium-aut-1:${env.BUILD_NUMBER}"
+                bat 'docker push israautomationdevops/selenium-aut-1'
+                //bat "docker tag israautomationdevops/selenium-aut-1:latest israautomationdevops/selenium-aut-1:${env.BUILD_NUMBER}"
+                //bat "docker push israautomationdevops/selenium-aut-1:${env.BUILD_NUMBER}"
         }
 
     }
