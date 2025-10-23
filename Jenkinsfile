@@ -28,8 +28,8 @@ pipeline{
                 bat 'docker push israautomationdevops/selenium-aut-1'
                 //bat "docker tag israautomationdevops/selenium-aut-1:latest israautomationdevops/selenium-aut-1:${env.BUILD_NUMBER}"
                 //bat "docker push israautomationdevops/selenium-aut-1:${env.BUILD_NUMBER}"
+            }
         }
-
     }
 
     post {
@@ -37,5 +37,6 @@ pipeline{
             bat 'docker logout'
         }
     }
+
 
 }
