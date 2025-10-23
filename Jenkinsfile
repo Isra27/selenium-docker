@@ -12,7 +12,7 @@ pipeline{
 
         stage('Build Image'){
             steps{
-               bat 'docker build -t=israautomationDevOps/selenium-aut-1:latest .'
+               bat 'docker build -t=israautomationdevops/selenium-aut-1:latest .'
             }
         }
 
