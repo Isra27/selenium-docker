@@ -19,9 +19,18 @@ echo "-------------------------------------------"
 # Do not start the tests immediately. Hub has to be ready with browser nodes
 echo "Checking if hub is ready..!"
 echo 'HUB_HOST      : ${HUB_HOST:-hub}'
-sleep 4
-sleep 4
-sleep 4
+sleep 1
+echo "iosra"
+sleep 1
+echo "iosra"
+sleep 1
+echo "iosra"
+sleep 1
+echo "iosra"
+sleep 1
+echo "iosra"
+sleep 1
+
 
 echo "$( curl -s http://${HUB_HOST:-hub}:4444/status | jq -r .value.ready )"
 count=0
