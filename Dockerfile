@@ -11,4 +11,4 @@ ADD target/docker-resources     ./
 ADD runner.sh                   runner.sh
 
 # Start the runner.sh
-ENTRYPOINT sh runner.sh
+ENTRYPOINT exec sh runner.sh
