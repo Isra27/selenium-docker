@@ -15,22 +15,13 @@ echo "BROWSER       : ${BROWSER:-chrome}"
 echo "THREAD_COUNT  : ${THREAD_COUNT:-1}"
 echo "TEST_SUITE    : ${TEST_SUITE}"
 echo "-------------------------------------------"
-
+wait_time=1
+sleep "$wait_time"
 # Do not start the tests immediately. Hub has to be ready with browser nodes
 echo "Checking if hub is ready..!"
 echo 'HUB_HOST      : ${HUB_HOST:-hub}'
-sleep 1
+sleep "$wait_time"
 echo "iosra"
-sleep 1
-echo "iosra"
-sleep 1
-echo "iosra"
-sleep 1
-echo "iosra"
-sleep 1
-echo "iosra"
-sleep 1
-
 
 echo "$( curl -s http://${HUB_HOST:-hub}:4444/status | jq -r .value.ready )"
 count=0
