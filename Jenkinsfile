@@ -30,6 +30,7 @@ pipeline{
                 //bat "docker push israautomationdevops/selenium-aut-1:${env.BUILD_NUMBER}"
             }
         }
+    }
 
     post {
         always {
@@ -37,5 +38,5 @@ pipeline{
         }
     }
 
-}
+
 }
