@@ -18,6 +18,7 @@ echo "-------------------------------------------"
 
 # Do not start the tests immediately. Hub has to be ready with browser nodes
 echo "Checking if hub is ready..!"
+echo "isra"
 count=0
 while [ "$( curl -s http://${HUB_HOST:-hub}:4444/status | jq -r .value.ready )" != "true" ]
 do
