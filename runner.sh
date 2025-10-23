@@ -1,3 +1,5 @@
+#!/bin/bash
+
 HUB_HOST_FINAL="${HUB_HOST:-hub}"
 BROWSER_FINAL="${BROWSER:-chrome}"
 THREAD_COUNT_FINAL="${THREAD_COUNT:-1}"
