@@ -20,6 +20,7 @@ echo "-------------------------------------------"
 echo "Checking if hub is ready..!"
 count=0
 while [ "$( curl -s http://${HUB_HOST:-hub}:4444/status | jq -r .value.ready )" != "true" ]
+echo "Inside while"
 do
   count=$((count+1))
   echo "Attempt: ${count}"
