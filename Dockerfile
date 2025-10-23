@@ -1,4 +1,4 @@
-FROM bellsoft/liberica-openjdk-alpine:21
+FROM bellsoft/liberica-openjdk-alpine:25-37
 
 # Install curl & jq
 RUN apk add curl jq
